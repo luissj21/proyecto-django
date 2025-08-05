@@ -23,6 +23,11 @@
     </ul>
   </div>
   {% endblock %} 
+
+  <form method="get" action=""> 
+    <input type="text" name="q" placeholder="Buscar alumno por nombre o matrícula" value="{{ query|default:'' }}" class="form-control" style="margin-bottom: 15px;">   
+</form>
+
   
   <!-- Tabla de Alumnos -->
 <table class="table table-bordered table-striped">
@@ -36,15 +41,17 @@
     </tr>
   </thead>
   <tbody>
+    {% for alumno in alumnos %}
     <tr>
       <td class="text-center">
-        <img src="" alt="" class="img-media">
+        <img src="{{alumno.imagen.url}}" alt="" class="img-media">
       </td>
-      <td class="text-semibold">UTM1234TIC</td>
-      <td class="muted">Nathalia</td>
-      <td class="muted">Tic</td>
-      <td class="muted">Matutino</td>
+      <td class="text-semibold">{{alumno.matricula}}</td>
+      <td class="muted">{{alumno.nombre}}</td>
+      <td class="muted">{{alumno.carrera}}</td>
+      <td class="muted">{{alumno.turno}}</td>
     </tr>
+    {% endfor %}
   </tbody>
 </table>
 
